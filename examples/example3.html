@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Leaflet Web Map</title>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/vs.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<!-- set width and height styles for map -->
+<style>
+#map {
+    width: 960px;
+    height:500px;
+}
+body {
+	padding: 0 25px 25px 25px;
+	font-size: 18px;
+}
+.newCode {
+	background: yellow;
+}
+</style>
+
+</head>
+
+<body>
+	
+	<h1>Leaflet with a Default Marker</h1>
+
+    <!--    place holder for map -->
+    <div id="map"></div>
+
+<pre><code>
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Leaflet Web Map&lt;/title&gt;
+
+&lt;!-- reference to Leaflet CSS --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css&quot; /&gt;
+
+&lt;!-- reference to Leaflet JavaScript --&gt;
+&lt;script src=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- set width and height styles for map --&gt;
+&lt;style&gt;
+#map {
+    width: 960px;
+    height:500px;
+}
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;!-- place holder for map --&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+
+    //  create map object, tell it to live in &#39;map&#39; div and give initial latitude, longitude, zoom values 
+    var map = L.map(&#39;map&#39;, {scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+
+    //  add base map tiles from OpenStreetMap and attribution info to &#39;map&#39; div
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    // create  marker object, add to map at point specified
+    <span class="newCode">var marker = L.marker([43.64701, -79.39425]).addTo(map);</span>
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+</code></pre>
+
+<script>
+
+    //  create map object, tell it to live in 'map' div and give initial latitude, longitude, zoom values 
+    var map = L.map('map',{scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+
+    //  add base map tiles from OpenStreetMap and attribution info to 'map' div
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+    // create  marker object, add to map at point specified
+    var marker = L.marker([43.64701, -79.39425]).addTo(map);
+
+</script>
+
+</body>
+
+</html>

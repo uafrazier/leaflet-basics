@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>Leaflet Tutorial</title>
+	<link rel='shortcut icon' href='imgs/moto.png' type='image/x-icon' />
+	<link rel="stylesheet" href="css/site.css" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+	<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<meta charset="utf-8">
+
+</head>
+
+<body>
+  <header>
+    <div id='header_map'><h1>#maptimeTO: leaflet.js</h1></div>
+  </header>
+ 
+	<div class='section'>
+		<h2>Let's make some web maps using <a href='http://leafletjs.com/'>Leaflet.js</a>!</h2>
+		<p>In this tutorial, we will use basic HTML, CSS, and JavaScript (specifically, the Leaflet JavaScript library) to create a series of progressively complex web maps.</p>
+		<p><a href='https://en.wikipedia.org/wiki/HTML'>HTML (HyperText Markup Language)</a> allows us to structure content for our web page. Our map will be contained in an element within an HTML file.</p>
+		<p><a href='https://en.wikipedia.org/wiki/Cascading_Style_Sheets'>CSS (Cascading Style Sheets)</a> gives us control of the style and visual presentation of our web page. We will use it in the placement and sizing of the map and to customize some Leaflet elements.</p>
+		<p><a href='https://en.wikipedia.org/wiki/JavaScript'>JS (JavaScript)</a> gives us the ability to add interactivity to our web page. We will use it to pull in map tiles to our web page, add data (or content layers), and handle user interaction with the map.</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>So, what exactly is Leaflet?</h2>
+		<p><a href='http://leafletjs.com/'>Leaflet</a> is an open-source JavaScript library that gives us code to create interactive, mobile friendly web maps.  Think of it as a collection (or library) of prewritten JavaScript that does some of the heavy lifting/scripting of web map stuff for us.  We will interact with the library through its well documented  <a href='http://leafletjs.com/reference.html'>API</a>.  It has a small file size but is packed with useful <a href='http://leafletjs.com/features.html'>features</a> and can be extended even further with <a href='http://leafletjs.com/plugins.html'>plugins</a>.</p>
+  	</div>
+  	
+	<div class='section'>
+		<h2>Setup</h2>
+		<p>For this guide you will need:</p>
+		<ul>
+			<li>a computer</li>
+			<li>internet access</li>
+			<li>a web browser (most any modern browser)</li>
+			<li>a text or code editor (notepad, textedit, <a href="http://www.sublimetext.com/">sublime text</a>, <a href="https://atom.io/">atom editor</a>, etc)</li>	
+		</ul>
+	</div>
+	
+	<div class='section'>
+		<h2>Basic Map of Toronto Centered on Mozilla Offices</h2>
+		<p>Here is the base map we'll build first:</p>
+		<div id='map' class='map'></div>
+		<p class='small'><em>view </em><a href='examples/example1.html'>example</a></p>
+	</div>
+  	
+  	 <div class='section'>
+		<h2>Create a basic HTML document</h2>
+		<p>Open a file editor > Create a new file > Save the file using a .html extension.</p>
+		<p>Next, set up the structure of the web page by adding the following markup to the file:</p>
+<pre><code class="html">
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Leaflet Web Map&lt;/title&gt;
+
+&lt;style&gt;
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;script&gt;
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+</code></pre>
+
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Reference the Leaflet CSS and JavaScript Files</h2>
+		<p>To make use of Leaflet we need to reference its CSS and JavaScript files in the HTML file.</p>
+		<p>You can reference the hosted Leaflet files or download copies, host them locally, and reference those.  Let's reference the hosted files. To do so, insert the following code into the &lt;head&gt; section of the HTML page:</p>
+<pre><code>
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css&quot; /&gt;
+
+&lt;script src=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Add Map Div and Style It</h2>
+		<p>Leaflet requires a &lt;div&gt; element to contain the map and that that &lt;div&gt; element have a set height.</p>
+		<p>Create a &lt;div&gt; element with the id of &quot;map&quot; to contain the map by adding the following to the HTML &lt;body&gt;:</p>
+	<pre><code>
+&lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+	</code></pre>
+		<p>To create a map that is 960 px by 500 px add the following CSS code between the &lt;style&gt; tags in the &lt;head&gt; section of the HTML page:</p>
+	<pre><code>
+#map {
+width: 960px;
+height: 500px;
+}
+	</code></pre>
+
+		<p>Now the HTML and CSS are set.  The basic structure and style of our web page is in place.  All we need to do is add some JavaScript and we'll have a web map!</p>	
+  	</div>
+  		
+  	<div class='section'>
+		<h2>Initialize Map</h2>
+		<p>The first script we will write pulls in some map tiles and configures a few basic map settings.</p>
+			
+		<p>Enter the following JavaScript between the &lt;script&gt; tags of the HTML file.</p>
+		
+	<pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;,{
+    center: [43.64701, -79.39425],
+    zoom: 15
+    });
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+&lt;/script&gt;
+
+	</code></pre>
+	
+		<p>The code is now complete so the file should now look like this:</p>
+		
+		<pre><code>
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Leaflet Web Map&lt;/title&gt;
+
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css&quot; /&gt;
+
+&lt;script src=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
+
+&lt;style&gt;
+#map {
+    width: 960px;
+    height:500px;
+}
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;,{
+    center: [43.64701, -79.39425],
+    zoom: 15
+    });
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+	
+		<p>Here is breakdown of the script:</p>
+		<p>The script creates the 'map' variable, assigns it a new <a href='http://leafletjs.com/reference.html#map-constructor'>L.map</a> object and passes it the id (‘map’ in this case) of the div element in which the map is to be contained. The script goes on to pass some options that set an initial center point and zoom level for the map. Essentially, this creates a map on the page that we can manipulate.</p>
+		<p>Next, the script creates a new <a href='http://leafletjs.com/reference.html#tilelayer'>L.tileLayer</a> object, specifying a particular set of tiles to be loaded into the map container and passes in an 'attribution' option.  In this case <a href='http://www.openstreetmap.org'>OpenStreetMap</a> tiles are used but there are many <a href='https://leaflet-extras.github.io/leaflet-providers/preview/index.html'>map tile providers.</a>  Experiment with different sets and remember to always properly attribute the data and imagery used!  As tiles are the basis of web maps, it is worth learning more about them.  For detailed information see <a href='http://maptime.io/anatomy-of-a-web-map/#0'>Anatomy of a Web Map</a>, by Alan McConchie and Beth Schechter of <a href='http://maptime.io/'>Maptime</a> and <a href='http://stamen.com/'>Stamen.</a></p>
+		<p>Finally, the <a href='http://leafletjs.com/reference.html#tilelayer-addto'>addTo()</a> method is used to add the tile layer to the map.
+		<p>Make sure to save the file and then open it with a web browser.</p>
+		<p>You should see a web map centered on the Mozilla Toronto offices!</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Modify the Base Map</h2>
+		<p>Let's go ahead and make two minor adjustments to the script.  The map will look the same but be a little more user friendly.  The code will be sleeker as well.</p>
+		<div id='mapa' class='map'></div>
+  	    <p class='small'><em>view </em><a href='examples/example2.html'>example</a></p>
+		
+		<pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;<span class="newCode">,{scrollWheelZoom:false}).setView([43.64701, -79.39425], 15)</span>;
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+&lt;/script&gt;
+		</code></pre>
+		<p>First, remove the 'center' and 'zoom' options from the L.map constructor.</p>
+		<p>Next, modify the script to deactivate the <a href='http://leafletjs.com/reference.html#map-scrollwheelzoom'>scrollWheelZoom</a> interactivity option so that we don't accidentally zoom the map when we are trying to scroll down the page. This is done by passing 'scrollWheelZoom: false' as an option to L.map(). This can be a particularly important usability issue if the map is large or if there is content above and/or below it.</p>
+		<p>Finally, set the initial center and zoom level with the <a href='http://leafletjs.com/reference.html#map-setview'>setView()</a> method.</p>
+		<p>The map should look just like our first one but we can't control the zoom level by scrolling and the code is a bit streamlined.</p>
+		<p>Now we have a customized base map with which to build on.</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Add a WMS Layer to the Map</h2>
+		<p>This example adds a <a href='https://en.wikipedia.org/wiki/Web_Map_Service'>Web Map Service (WMS)</a> Weather Overlay to the map.</p>
+		<div id='mapWms' class='map'></div>
+  	    <p class='small'><em>view </em><a href='examples/wms_example.html'>example</a></p>
+  	    <pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;).setView([43.64701, -79.39425], <span class='newCode'>3</span>);
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    <span class='newCode'>L.tileLayer.wms(&quot;http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi&quot;, {
+    	layers: &#39;nexrad-n0r-900913&#39;,
+        format: &#39;image/png&#39;,
+        transparent: true,
+        attribution: &quot;Weather data &copy; 2012 IEM Nexrad&quot;
+    }).addTo(map);</span>
+
+&lt;/script&gt;
+  	    </code></pre>
+  	    <p>This code changes the zoom level in the setView() method to 3 and using <a href='http://leafletjs.com/reference.html#tilelayer-wms'>L.tileLayer.wms()</a> displays a WMS service as a tile layer on the map.  Like the L.tilelayer() function, L.tilelayer.wms() is passed the url to the service provider and a set of options.</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Add a Default Marker to the Map</h2>
+		<p>This example adds a default Leaflet marker on the Mozilla Toronto offices.</p>
+		<div id='map1' class='map'></div>
+  	    <p class='small'><em>view </em><a href='examples/example3.html'>example</a></p>
+  	    <pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;, {scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    <span class="newCode">var marker = L.marker([43.64701, -79.39425]).addTo(map);</span>
+
+&lt;/script&gt;
+  	    </code></pre>
+  	    <p>This code creates a marker variable and assigns it a marker object with a particular point using <a href="http://leafletjs.com/reference.html#marker">L.marker()</a>. The marker is then added to the map with the <a href='http://leafletjs.com/reference.html#marker-addto'>addTo()</a> method.</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Add a Custom Marker to the Map</h2>
+		<p>This example adds a custom marker (a Firefox icon) on the Mozilla Toronto offices.</p>
+		<div id='map2' class='map'></div>
+  	    <p class='small'><em>view </em><a href='examples/example4.html'>example</a></p>
+  	    <pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;, {scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    <span class="newCode">var firefoxIcon = L.icon({
+        iconUrl: &#39;http://joshuafrazier.info/images/firefox.svg&#39;,
+        iconSize: [38, 95], // size of the icon
+        });</span>
+
+    var marker = L.marker([43.64701, -79.39425]<span class="newCode">, {icon: firefoxIcon}</span>).addTo(map);
+
+&lt;/script&gt;
+  	    </code></pre>
+  	    
+  	    <p>This code creates the ‘firefoxIcon’ variable and assigns it an icon marker using <a href='http://leafletjs.com/reference.html#icon'>L.icon()</a>.<p>
+	  	 <p>A few options are passed to L.icon():
+  	    <ul>
+	  	    <li>iconUrl: the url to an image to be used as icon marker</li>
+	  	    <li>iconSize: thesize to make the icon marker</li>
+  	    </ul>
+  	    The ‘firefoxIcon’ variable is then passed to the ‘icon’ option of L.marker().
+	  	</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Add a Popup to the Marker</h2>
+		<p>This example adds a standard popup to the custom marker.  It is activated upon click.</p>
+		<div id='map3' class='map'></div>
+  	    <p class='small'><em>view </em><a href='examples/example5.html'>example</a></p>
+  	    <pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;, {scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    var firefoxIcon = L.icon({
+        iconUrl: &#39;http://joshuafrazier.info/images/firefox.svg&#39;,
+        iconSize: [38, 95], // size of the icon
+        });
+
+    L.marker([43.64701, -79.39425], {icon: firefoxIcon})<span class="newCode">.bindPopup('Mozilla Toronto Office')</span>.addTo(map);
+
+&lt;/script&gt;
+  	    </code></pre>
+  	    <p>This code adds a popup to marker click by using the <a href='http://leafletjs.com/reference.html#marker-bindpopup'>bindPopup()</a> method.</p>
+  	</div>
+  	
+  	<div class='section'>
+		<h2>Customize the Popup on the Marker</h2>
+		<p> This example adds HTML content and a custom style to the popup.</p>
+		<div id='map5' class='map'></div>
+  	    <p class='small'><em>view </em><a href='examples/example6.html'>example</a></p>
+  	    <pre><code>
+&lt;style&gt;
+#map {
+    width: 960px;
+    height:500px;
+}
+<span class='newCode'>.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #e93434;
+    color: #ffffff;
+}</span>
+&lt;/style&gt;
+  	    </code></pre>
+  	    <p>This CSS code is added to the head of the HTML file. It adds styles for the class 'custom' which we will create in our script.</p>
+  	    <pre><code>
+&lt;script&gt;
+
+    var map = L.map(&#39;map&#39;, {scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    var firefoxIcon = L.icon({
+        iconUrl: &#39;http://joshuafrazier.info/images/firefox.svg&#39;,
+        iconSize: [38, 95], // size of the icon
+        <span class='newCode'>popupAnchor: [0,-15]</span>
+        });
+
+    <span class='newCode'>var customPopup = &quot;Mozilla Toronto Offices&lt;br/&gt;<br/>
+    &lt;img src=&#39;http://joshuafrazier.info/images/maptime.gif&#39; alt=&#39;maptime logo gif&#39; width=&#39;350px&#39;/&gt;&quot;;</span>
+
+    <span class='newCode'>var customOptions =
+        {
+        &#39;maxWidth&#39;: &#39;500&#39;,
+        &#39;className&#39; : &#39;custom&#39;
+        }</span>
+
+    L.marker([43.64701, -79.39425], {icon: firefoxIcon}).bindPopup(<span class='newCode'>customPopup,customOptions</span>).addTo(map);
+
+&lt;/script&gt;
+  	    </code></pre>
+  	    <p>This code first adds a <a href='http://leafletjs.com/reference.html#icon-popupanchor'>'popupAnchor'</a> option to the icon. The values set moves the popup higher so that more of the icon is visible.</p>
+	  	<p>Then it creates the variable ‘customPopup’ and assigns it some HTML content.</p>
+  		<p>Next it creates the variable ‘customOptions’ and specifies a few options:
+	  		<ul>
+	  		<li>-the class name 'custom' is added so custom CSS styles can be applied</li>
+	  		<li>-a maxWidth is set*</li>
+	  		</ul>
+	  	<p>The <a href='http://leafletjs.com/reference.html#marker-bindpopup'>bindPopup</a> method takes HTML content and options as arguments.  The variables created are passed into the method.</p>
+	  	<p>*Note, by default the maximum width of a popup is set to 300px. Sometimes you might want it wider, particularly if you want to add content to it that is larger than 300px. To avoid content spilling out of the popup, make sure the 'maxWidth' option of popup is set larger than the width of content used.</p>
+  	</div>
+	  	
+  	<div class='section'>
+		<h2>Acknowledgements and Further Resources</h2>
+		<p>One of the great things about Leaflet is that there are so many resources out there for you to consult.  I perused all of the following to prepare this tutorial for <a href='https://twitter.com/maptimeto'>MaptimeTO</a>.  Make sure to take advantage of them.  And a special big ups to all the fellow <a href='http://maptime.io/'>Maptimers</a> on this list from whose work I built on and around!</p>
+		<p><a href='http://leafletjs.com/examples.html'>Leaflet tutorials</a> on the official Leaflet website.</p>
+		<p><a href='https://www.packtpub.com/web-development/leafletjs-essentials'>Leaflet.js Essentials</a>, a book by Paul Crickard III.</p>
+		<p><a href='https://github.com/geografa/foss4g2014-workshops/blob/master/Leaflet-and-Mapbox-JavaScript-API-Fundamentals.pdf'>Leaflet and Mapbox JavaScript API Fundamentals</a>, a presentation by Mapbox's Rafa Gutierrez.</p>
+		<p><a href='http://lyzidiamond.com/maptimepdx/leaflet'>Leaflet Intro</a>, a Maptime PDX presentation by Lyzi Diamond.</p>
+		<p><a href='http://maptimeboston.github.io/leaflet-intro/'>Leaflet Tutorial</a>, written for Maptime Boston by Andy Woodruff and Ryan Mullins that gets into some more advanced techniques such as incorporating jQuery, external geojson files and the Leaflet.markercluster plugin into a project.
+		<p><a href='http://luxembourgjs.github.io/leaflet-demo/#/'>Leaflet.JS Introduction</a>, by  Thierry Nicola for JS Luxembourg.</p>
+		<p><a href="http://leaflet-extras.github.io/leaflet-providers/preview/index.html">Leaflet provider</a> map, an open source Leaflet extension that contains configurations for various free tile providers.</p>
+		<p><a href="https://www.mapbox.com/guides">Mapbox Guides</a> and <a href='https://www.mapbox.com/mapbox.js/examples/'>examples</a> are great for learning about web maps in general in addition to Mapbox.js, which is built on top of Leaflet.</p>
+  	</div>
+  	
+  	<div class='foot'>
+  	<hr/>
+  	<p><a href='#'>Back to Top</a></p>
+  	</div>
+  	
+  	<script src='js/site.js'></script> 
+  	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35978610-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>
+
+    	
+
+
+

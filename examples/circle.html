@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Leaflet Web Map</title>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/vs.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<style>
+#map {
+	width: 960px;
+	height:500px;   
+}
+body {
+	padding: 0 25px 25px 25px;
+	font-size: 18px;
+}
+</style>
+
+</head>
+
+<body>
+	
+	<h1>Leaflet Map with a Circle</h1>
+	
+	<div id="map"></div>
+	
+	<pre><code>
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;title&gt;Leaflet Web Map&lt;/title&gt;
+
+&lt;!-- reference to Leaflet CSS --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css&quot; /&gt;
+
+&lt;!-- reference to Leaflet JavaScript --&gt;
+&lt;script src=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
+
+&lt;!-- set width and height styles for map --&gt;
+&lt;style&gt;
+#map {
+    width: 960px;
+    height:500px;
+}
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;!-- place holder for map --&gt;
+    &lt;div id=&quot;map&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+
+    // create map object, tell it to live in &#39;map&#39; div and give initial latitude, longitude, zoom values
+    // pass option to turn scroll wheel zoom off
+    var map = L.map(&#39;map&#39;<span class="newCode">,{scrollWheelZoom:false}).setView([43.64701, -79.39425], 15)</span>;
+
+    // add base map tiles from OpenStreetMap and attribution info to &#39;map&#39; div
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+
+    // add circle by passing center, radius, and some basic styles
+    L.circle([43.64701, -79.39425], 400,{color:&#39;yellow&#39;,opacity:1,fillColor: &#39;blue&#39;,fillOpacity:.4}).addTo(map);
+    
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+
+	</code></pre>
+
+<script>
+	
+	var map = L.map('map',{scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+		
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+		
+	L.circle([43.64701, -79.39425], 400,{color:'yellow',opacity:1,fillColor: 'blue',fillOpacity:.4}).addTo(map);
+	
+</script>
+
+</body>
+
+</html>
+
+
+

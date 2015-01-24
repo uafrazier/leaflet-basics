@@ -111,16 +111,13 @@ width: 960px;
 height: 500px;
 }
 	</code></pre>
-
 		<p>Now the HTML and CSS are set.  The basic structure and style of our web page is in place.  All we need to do is add some JavaScript and we'll have a web map!</p>	
   	</div>
   		
   	<div class='section'>
 		<h2>Initialize Map</h2>
 		<p>The first script we will write pulls in some map tiles and configures a few basic map settings.</p>
-			
 		<p>Enter the following JavaScript between the &lt;script&gt; tags of the HTML file.</p>
-		
 	<pre><code>
 &lt;script&gt;
 
@@ -378,6 +375,18 @@ height: 500px;
 	  		</ul>
 	  	<p>The <a href='http://leafletjs.com/reference.html#marker-bindpopup'>bindPopup</a> method takes HTML content and options as arguments.  The variables created are passed into the method.</p>
 	  	<p>*Note, by default the maximum width of a popup is set to 300px. Sometimes you might want it wider, particularly if you want to add content to it that is larger than 300px. To avoid content spilling out of the popup, make sure the 'maxWidth' option of popup is set larger than the width of content used.</p>
+  	</div>
+  	
+  	<div class='section'>
+	  	<h2>Next Steps</h2>
+	  	<p>Examples of how to easily add vector layers to a map:
+		  	<ul>
+			  	<li>Add a <a href='examples/circle.html'>Circle</a> to the map.</li>
+			  	<li>Add a <a href='examples/rectangle.html'>Rectangle</a> to the map.</li>
+			  	<li>Add a <a href='examples/polygon.html'>Polygon</a> to the map.</li>
+			  	<li>Add a <a href='examples/polyline.html'>Polyline</a> to the map.</li>
+		  	</ul>
+	  	</p>
   	</div>
 	  	
   	<div class='section'>

@@ -7,7 +7,7 @@ Provides a walk through of a series of example maps with each one building off t
 ## General Outline:
 
 - set up HTML document
-- create a basic web page with a map
+- create a basic map on page
 - modify the map for usability
 - add WMS layer
 - add default marker

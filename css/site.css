@@ -25,6 +25,12 @@ header {
     margin: 0 auto;
     text-align: right;	
 }
+.foot .left{
+	float: left;
+}
+.foot .right{
+	
+}
 a {
 	text-decoration: none;
 	color:#3887BE;

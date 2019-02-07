@@ -8,7 +8,7 @@
 				'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
 			mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
 			
-		L.tileLayer(mbUrl, {id: 'examples.map-20v6611k', attribution: mbAttr}).addTo(header_map);
+		L.tileLayer(mbUrl, {id: 'uafrazier.o3ecma8l', attribution: mbAttr}).addTo(header_map);
  
 	  	//basic leaflet map
 		var map = L.map('map').setView([43.64701, -79.39425], 15);

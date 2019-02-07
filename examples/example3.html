@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    <title>Leaflet Web Map</title>
+    <link rel="shortcut icon" href="imgs/moto.png" type="image/x-icon" />
 
-<head>
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/vs.min.css"
+    />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"
+    />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script>
+      hljs.initHighlightingOnLoad();
+    </script>
 
-<title>Leaflet Web Map</title>
+    <!-- set width and height styles for map -->
+    <style>
+      #map {
+        width: 960px;
+        height: 500px;
+      }
+      body {
+        padding: 0 25px 25px 25px;
+        font-size: 18px;
+      }
+      .newCode {
+        background: yellow;
+      }
+    </style>
+  </head>
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/vs.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-<!-- set width and height styles for map -->
-<style>
-#map {
-    width: 960px;
-    height:500px;
-}
-body {
-	padding: 0 25px 25px 25px;
-	font-size: 18px;
-}
-.newCode {
-	background: yellow;
-}
-</style>
-
-</head>
-
-<body>
-	
-	<h1>Leaflet Map with a Default Marker</h1>
+  <body>
+    <h1>Leaflet Map with a Default Marker</h1>
 
     <!--    place holder for map -->
     <div id="map"></div>
 
-<pre><code>
+    <pre><code>
 &lt;!DOCTYPE html&gt;
 
 &lt;html&gt;
@@ -87,31 +92,46 @@ body {
 
 </code></pre>
 
-<script>
+    <script>
+      //  create map object, tell it to live in 'map' div and give initial latitude, longitude, zoom values
+      var map = L.map('map', { scrollWheelZoom: false }).setView(
+        [43.64701, -79.39425],
+        15
+      );
 
-    //  create map object, tell it to live in 'map' div and give initial latitude, longitude, zoom values 
-    var map = L.map('map',{scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
+      //  add base map tiles from OpenStreetMap and attribution info to 'map' div
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution:
+          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
 
-    //  add base map tiles from OpenStreetMap and attribution info to 'map' div
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-    
-    // create  marker object, add to map at point specified
-    var marker = L.marker([43.64701, -79.39425]).addTo(map);
+      // create  marker object, add to map at point specified
+      var marker = L.marker([43.64701, -79.39425]).addTo(map);
+    </script>
 
-</script>
+    <script>
+      (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        (i[r] =
+          i[r] ||
+          function() {
+            (i[r].q = i[r].q || []).push(arguments);
+          }),
+          (i[r].l = 1 * new Date());
+        (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(
+        window,
+        document,
+        'script',
+        '//www.google-analytics.com/analytics.js',
+        'ga'
+      );
 
-  	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-35978610-1', 'auto');
-  ga('send', 'pageview');
-	</script>
-
-</body>
-
+      ga('create', 'UA-35978610-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>

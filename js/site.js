@@ -48,7 +48,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(mapWms);
 
 var nexrad = L.tileLayer
-  .wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+  .wms("https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
     layers: "nexrad-n0r-900913",
     format: "image/png",
     transparent: true,

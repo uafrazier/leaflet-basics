@@ -45,7 +45,7 @@ body {
   padding: 10px;
   margin: 0 auto;
 }
-/* .foot {
+.foot {
   background: #ffffff;
   max-width: 960px;
   padding: 10px;
@@ -56,7 +56,8 @@ body {
   float: left;
 }
 .foot .right {
-} */
+  float: right;
+}
 a {
   text-decoration: none;
   color: #3887be;

@@ -15,4 +15,4 @@ Provides a walk through of a series of example maps with each one building off t
 - add default popup
 - customize popup
 
-View online at http://uafrazier.github.io/leaflet-basics/
+View online at https://joshuafrazier.info/leaflet-basics/

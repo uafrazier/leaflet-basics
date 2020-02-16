@@ -38,6 +38,10 @@ body {
   z-index: 500;
 }
 
+.updated {
+  color: #800080;
+}
+
 .new {
   background: yellow;
 }

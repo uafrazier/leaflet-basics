@@ -31,122 +31,122 @@
     <!--Modified Basemap Code-->
     <script>
       //Create map object, give initial coordinates, zoom values
-      var map = L.map('map', { scrollWheelZoom: true }).setView(
+      var map = L.map("map", { scrollWheelZoom: true }).setView(
         [45.31009, -94.10697],
         7
       );
 
       //Add basemap tiles from OpenStreetMap
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
-          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
       //Map with simple default markers that points to be add at coordinates specified
       //Create a popup box with info for each marker point display on map
       //Code for a simple GeoJSON feature
       var campsitesFeature = {
-        type: 'FeatureCollection',
+        type: "FeatureCollection",
         features: [
           {
-            type: 'Feature',
+            type: "Feature",
             properties: {
-              Name: 'Camp Friendship',
-              Office: 'Main Office',
-              Address: '10509 - 108th Street NW',
-              City: 'Annandale',
-              State: 'MN',
-              ZipCode: '55302',
-              xUTM_Easting: '413226',
-              yUTM_Northing: '5017994'
+              Name: "Camp Friendship",
+              Office: "Main Office",
+              Address: "10509 - 108th Street NW",
+              City: "Annandale",
+              State: "MN",
+              ZipCode: "55302",
+              xUTM_Easting: "413226",
+              yUTM_Northing: "5017994"
             },
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-94.10697, 45.31009]
             }
           },
           {
-            type: 'Feature',
+            type: "Feature",
             properties: {
-              Name: 'Camp Courage',
-              Office: '',
-              Address: '8046 - 83rd Street NW',
-              City: 'Maple Lake',
-              State: 'MN',
-              ZipCode: '55358',
-              xUTM_Easting: '417082',
-              yUTM_Northing: '5013605'
+              Name: "Camp Courage",
+              Office: "",
+              Address: "8046 - 83rd Street NW",
+              City: "Maple Lake",
+              State: "MN",
+              ZipCode: "55358",
+              xUTM_Easting: "417082",
+              yUTM_Northing: "5013605"
             },
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-94.05705, 45.27105]
             }
           },
           {
-            type: 'Feature',
+            type: "Feature",
             properties: {
-              Name: 'Camp Eden Wood',
-              Office: '',
-              Address: '6350 Indian Chief Road',
-              City: 'Eden Prairie',
-              State: 'MN',
-              ZipCode: '55346',
-              xUTM_Easting: '463277',
-              yUTM_Northing: '4970610'
+              Name: "Camp Eden Wood",
+              Office: "",
+              Address: "6350 Indian Chief Road",
+              City: "Eden Prairie",
+              State: "MN",
+              ZipCode: "55346",
+              xUTM_Easting: "463277",
+              yUTM_Northing: "4970610"
             },
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-93.46503, 44.88796]
             }
           },
           {
-            type: 'Feature',
+            type: "Feature",
             properties: {
-              Name: 'Camp Courage North',
-              Office: '',
-              Address: '37569 Courage North Drive',
-              City: 'Lake George',
-              State: 'MN',
-              ZipCode: '56458',
-              xUTM_Easting: '351033',
-              yUTM_Northing: '5229567'
+              Name: "Camp Courage North",
+              Office: "",
+              Address: "37569 Courage North Drive",
+              City: "Lake George",
+              State: "MN",
+              ZipCode: "56458",
+              xUTM_Easting: "351033",
+              yUTM_Northing: "5229567"
             },
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-94.96691, 47.2027]
             }
           },
           {
-            type: 'Feature',
+            type: "Feature",
             properties: {
-              Name: 'Camp New Hope',
-              Office: '',
-              Address: '53035 Lake Avenue',
-              City: 'McGregor',
-              State: 'MN',
-              ZipCode: '55760',
-              xUTM_Easting: '483004',
-              yUTM_Northing: '5180913'
+              Name: "Camp New Hope",
+              Office: "",
+              Address: "53035 Lake Avenue",
+              City: "McGregor",
+              State: "MN",
+              ZipCode: "55760",
+              xUTM_Easting: "483004",
+              yUTM_Northing: "5180913"
             },
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-93.22265, 46.78155]
             }
           },
           {
-            type: 'Feature',
+            type: "Feature",
             properties: {
-              Name: 'Administration',
-              Office: 'Plymouth Office',
-              Address: '95 - 3600 Holly Lane North',
-              City: 'Plymouth',
-              State: 'MN',
-              ZipCode: '55447',
-              xUTM_Easting: '460911',
-              yUTM_Northing: '4985620'
+              Name: "Administration",
+              Office: "Plymouth Office",
+              Address: "95 - 3600 Holly Lane North",
+              City: "Plymouth",
+              State: "MN",
+              ZipCode: "55447",
+              xUTM_Easting: "460911",
+              yUTM_Northing: "4985620"
             },
             geometry: {
-              type: 'Point',
+              type: "Point",
               coordinates: [-93.49616, 45.02295]
             }
           }
@@ -158,15 +158,15 @@
         pointToLayer: function(feature, latlng) {
           var marker = L.marker(latlng);
           marker.bindPopup(
-            '<b>' +
+            "<b>" +
               feature.properties.Name +
-              '</b><br/>' +
+              "</b><br/>" +
               feature.properties.Address +
-              '<br/>' +
+              "<br/>" +
               feature.properties.City +
-              ',' +
+              "," +
               feature.properties.State +
-              '' +
+              "" +
               feature.properties.ZipCode
           );
           return marker;

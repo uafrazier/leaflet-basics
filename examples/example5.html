@@ -6,14 +6,20 @@
     <link rel="shortcut icon" href="../imgs/moto.png" type="image/x-icon" />
     <link
       rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/vs.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css"
     />
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
     <link
       rel="stylesheet"
-      href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"
+      href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin=""
     />
-    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script
+      src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""
+    ></script>
     <script>
       hljs.initHighlightingOnLoad();
     </script>
@@ -49,10 +55,19 @@
 &lt;title&gt;Leaflet Web Map&lt;/title&gt;
 
 &lt;!-- reference to Leaflet CSS --&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css&quot; /&gt;
+   &lt;link
+      rel=&quot;stylesheet&quot;
+      href=&quot;https://unpkg.com/leaflet@1.6.0/dist/leaflet.css&quot;
+      integrity=&quot;sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==&quot;
+      crossorigin=&quot;&quot;
+    /&gt;
 
 &lt;!-- reference to Leaflet JavaScript --&gt;
-&lt;script src=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js&quot;&gt;&lt;/script&gt;
+   &lt;script
+      src=&quot;https://unpkg.com/leaflet@1.6.0/dist/leaflet.js&quot;
+      integrity=&quot;sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==&quot;
+      crossorigin=&quot;&quot;
+    &gt;&lt;/script&gt;
 
 &lt;!-- set width and height styles for map --&gt;
 &lt;style&gt;
@@ -75,8 +90,8 @@
     var map = L.map(&#39;map&#39;, {scrollWheelZoom:false}).setView([43.64701, -79.39425], 15);
 
     //  add base map tiles from OpenStreetMap and attribution info to &#39;map&#39; div
-    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
-    attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    L.tileLayer(&#39;https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&#39;, {
+    attribution: &#39;&amp;copy; &lt;a href=&quot;https://www.openstreetmap.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
     }).addTo(map);
 
     // create custom icon
@@ -104,18 +119,18 @@
 	</code></pre>
 
     <script>
-      var map = L.map('map', { scrollWheelZoom: false }).setView(
+      var map = L.map("map", { scrollWheelZoom: false }).setView(
         [43.64701, -79.39425],
         15
       );
 
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
-          '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
 
       var firefoxIcon = L.icon({
-        iconUrl: 'http://joshuafrazier.info/images/firefox.svg',
+        iconUrl: "http://joshuafrazier.info/images/firefox.svg",
         iconSize: [38, 95] // size of the icon
       });
 
@@ -123,12 +138,12 @@
         map
       );
 
-      marker.bindPopup('Mozilla Toronto Office');
+      marker.bindPopup("Mozilla Toronto Office");
     </script>
 
     <script>
       (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
+        i["GoogleAnalyticsObject"] = r;
         (i[r] =
           i[r] ||
           function() {
@@ -142,13 +157,13 @@
       })(
         window,
         document,
-        'script',
-        '//www.google-analytics.com/analytics.js',
-        'ga'
+        "script",
+        "//www.google-analytics.com/analytics.js",
+        "ga"
       );
 
-      ga('create', 'UA-35978610-1', 'auto');
-      ga('send', 'pageview');
+      ga("create", "UA-35978610-1", "auto");
+      ga("send", "pageview");
     </script>
   </body>
 </html>

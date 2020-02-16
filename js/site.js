@@ -1,18 +1,31 @@
 //header map
-var header_map = L.map("header_map", {
+var header_map = L.map("header-map", {
   scrollWheelZoom: false,
   zoomControl: false
 }).setView([43.64701, -79.39425], 15);
 
 var mbAttr =
-    'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    'Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+    'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery &copy; <a href="https://mapbox.com">Mapbox</a>',
   mbUrl = "https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png";
 
 L.tileLayer(mbUrl, { id: "uafrazier.o3ecma8l", attribution: mbAttr }).addTo(
   header_map
 );
+
+// mapboxgl.accessToken =
+//   "pk.eyJ1IjoidWFmcmF6aWVyIiwiYSI6Ims5TVN0MGMifQ.JSyvEIE-a3O_KhA1o503gg";
+// // Add the map to your page
+// var mapX = new mapboxgl.Map({
+//   container: "header-map", // container id specified in the HTML
+//   style: "mapbox://styles/mapbox/streets-v11", // style URL
+//   center: [-79.39425, 43.64701], // initial map center in [lon, lat]
+//   zoom: 15
+// });
+
+// // disable map zoom when using scroll
+// mapX.scrollZoom.disable();
 
 //basic leaflet map
 var map = L.map("map").setView([43.64701, -79.39425], 15);

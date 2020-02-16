@@ -27,7 +27,7 @@ body {
 #console h1 {
   position: absolute;
   right: 100px;
-  top: 75px;
+  top: 0;
   text-align: center;
   font-size: 70px;
   margin: 100px 0px 0px 0px;
@@ -35,6 +35,7 @@ body {
   color: purple;
   text-shadow: -3px -3px 0px cyan, -6px -6px 0px green, -9px -9px 0px yellow,
     -12px -12px 0px orange, -15px -15px 0px red;
+  z-index: 500;
 }
 
 .new {

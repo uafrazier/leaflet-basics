@@ -1,31 +1,17 @@
 //header map
-var header_map = L.map("header-map", {
+var header_map = L.map("headMap", {
   scrollWheelZoom: false,
-  zoomControl: false
+  zoomControl: false,
 }).setView([43.64701, -79.39425], 15);
 
-var mbAttr =
-    'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    'Imagery &copy; <a href="https://mapbox.com">Mapbox</a>',
-  mbUrl = "https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png";
-
-L.tileLayer(mbUrl, { id: "uafrazier.o3ecma8l", attribution: mbAttr }).addTo(
-  header_map
-);
-
-// mapboxgl.accessToken =
-//   "pk.eyJ1IjoidWFmcmF6aWVyIiwiYSI6Ims5TVN0MGMifQ.JSyvEIE-a3O_KhA1o503gg";
-// // Add the map to your page
-// var mapX = new mapboxgl.Map({
-//   container: "header-map", // container id specified in the HTML
-//   style: "mapbox://styles/mapbox/streets-v11", // style URL
-//   center: [-79.39425, 43.64701], // initial map center in [lon, lat]
-//   zoom: 15
-// });
-
-// // disable map zoom when using scroll
-// mapX.scrollZoom.disable();
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoidWFmcmF6aWVyIiwiYSI6Ims5TVN0MGMifQ.JSyvEIE-a3O_KhA1o503gg', {
+  maxZoom: 18,
+  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  id: 'mapbox/light-v10',
+  tileSize: 512,
+  zoomOffset: -1
+}).addTo(header_map);
 
 //basic leaflet map
 var map = L.map("map").setView([43.64701, -79.39425], 15);
@@ -33,7 +19,7 @@ var map = L.map("map").setView([43.64701, -79.39425], 15);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map);
 
 //map with scroll wheel deactivated
@@ -45,7 +31,7 @@ var mapa = L.map("mapa", { scrollWheelZoom: false }).setView(
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(mapa);
 
 //map with WMS layer(s)
@@ -57,7 +43,7 @@ var mapWms = L.map("mapWms", { scrollWheelZoom: false }).setView(
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(mapWms);
 
 var nexrad = L.tileLayer
@@ -65,7 +51,7 @@ var nexrad = L.tileLayer
     layers: "nexrad-n0r-900913",
     format: "image/png",
     transparent: true,
-    attribution: "Weather data © 2012 IEM Nexrad"
+    attribution: "Weather data © 2012 IEM Nexrad",
   })
   .addTo(mapWms); //this example from leaflet documentation
 
@@ -78,7 +64,7 @@ var map1 = L.map("map1", { scrollWheelZoom: false }).setView(
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map1);
 
 var marker = L.marker([43.64701, -79.39425]).addTo(map1);
@@ -92,12 +78,12 @@ var map2 = L.map("map2", { scrollWheelZoom: false }).setView(
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map2);
 
 var firefoxIcon = L.icon({
   iconUrl: "imgs/firefox.svg",
-  iconSize: [38, 95] // size of the icon
+  iconSize: [38, 95], // size of the icon
 });
 
 L.marker([43.64701, -79.39425], { icon: firefoxIcon }).addTo(map2);
@@ -111,12 +97,12 @@ var map3 = L.map("map3", { scrollWheelZoom: false }).setView(
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map3);
 
 var firefoxIcon = L.icon({
   iconUrl: "imgs/firefox.svg",
-  iconSize: [38, 95] // size of the icon
+  iconSize: [38, 95], // size of the icon
 });
 
 L.marker([43.64701, -79.39425], { icon: firefoxIcon })
@@ -132,13 +118,13 @@ var map5 = L.map("map5", { scrollWheelZoom: false }).setView(
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(map5);
 
 var firefoxIcon = L.icon({
   iconUrl: "imgs/firefox.svg",
   iconSize: [38, 95], // size of the icon
-  popupAnchor: [0, -15]
+  popupAnchor: [0, -15],
 });
 
 var customPopup =
@@ -147,7 +133,7 @@ var customPopup =
 var customOptions = {
   maxWidth: "500",
   className: "custom",
-  autoPan: "false"
+  autoPan: "false",
 };
 
 L.marker([43.64701, -79.39425], { icon: firefoxIcon })
